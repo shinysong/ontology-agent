@@ -4,7 +4,7 @@
 
 이 프로젝트는 금융 비정형 데이터를 FIBO (Financial Industry Business Ontology) 기반의 구조화된 지식 그래프 트리플로 변환하는 모듈형 에이전트 프레임워크입니다.
 
-우리는 LLM에게 프롬프트를 지식 추출의 **'온톨로지(Ontology)'**로 개념화하여 주입하며, 사용자가 자신의 데이터 도메인에 맞는 온톨로지를 쉽게 적용하고, 그 품질을 검증할 수 있도록 설계되었습니다.
+우리는 LLM에게 프롬프트를 지식 추출의 **온톨로지(Ontology)**로 개념화하여 주입하며, 사용자가 자신의 데이터 도메인에 맞는 온톨로지를 쉽게 적용하고, 그 품질을 검증할 수 있도록 설계되었습니다.
 
 🧱 핵심 에이전트 플로우 (Core Agent Flow)
 
@@ -12,7 +12,7 @@
 
 1. 🔍 도메인 판별 및 온톨로지 선택 (Data Preparation Agent)
 
-역할: 사용자 데이터(0000.parquet 등)의 소량 샘플을 분석하여 가장 적합한 **웹 표준 온톨로지(FIBO, Schema.org 등)**를 판별하고 추천합니다.
+역할: 사용자 데이터의 소량 샘플을 분석하여 가장 적합한 웹 표준 온톨로지(FIBO, Schema.org 등)를 판별하고 추천합니다.
 
 결과: 해당 온톨로지를 기반으로 작성된 '프롬프트 템플릿' 파일(예: prompts/fibo_base.md)을 준비합니다.
 
@@ -72,10 +72,6 @@ flowchart LR
 CLI는 `--output-dir`로 경로를 지정할 수 있으며, 기본값은 `runs/run-타임스탬프`입니다.
 
 # 구현 가이드라인
-**Agent Builder**를 활용하여 온톨로지 기반의 추출 에이전트(**UOME Agent**) 프로토타입을 설계하는 것은 매우 효과적인 방법입니다. Agent Builder의 핵심 구성 요소인 **Instruction (지침)**, **Capabilities (기능)**, 그리고 \*\*Knowledge (지식)\*\*를 사용하여 노드 단위로 설계하는 방식을 구체적으로 제시해 드리겠습니다.
-
-여기서 `0000.parquet` 파일은 **FinDER 데이터셋**의 일부(비정형 텍스트)를 포함하고 있다고 가정합니다. Agent Builder는 이 데이터를 직접 처리하기보다는, 추출할 **텍스트 스니펫**을 **프롬프트 입력**으로 받아 처리하게 됩니다.
-
 - google agent: https://github.com/google/adk-samples/tree/main/python/agents/gemini-fullstack
 - sample: https://github.com/google/adk-samples/blob/main/python/agents/gemini-fullstack/app/agent.py
 -----
